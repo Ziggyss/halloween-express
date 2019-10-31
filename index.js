@@ -11,8 +11,13 @@ const friends = [
   { id: 3, name: 'Pere' },
 ]
 
+app.use(express.static(__dirname + '/client/build'));
 app.use(express.json());
 app.use(cors());
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + './client/build/index.html')
+})
 
 app.get('/api/friends', (req, res, next) => {
   res.json(friends);
